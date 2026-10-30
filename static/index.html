@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AI Mock Interview Simulator — Practice with personalized AI-powered interviews and get real-time feedback and skill assessment reports." />
+  <title>InterviewAI — AI Mock Interview Simulator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<!-- SCREEN 1: LANDING / HOME                                           -->
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<div id="screen-home" class="screen active">
+  <div class="animated-bg">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
+  <nav class="navbar">
+    <div class="nav-brand">
+      <div class="brand-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      </div>
+      <span>InterviewAI</span>
+    </div>
+    <div class="nav-status">
+      <div id="ai-status-dot" class="status-dot"></div>
+      <span id="ai-status-text">Checking AI…</span>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-badge">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      Powered by Google Gemini AI
+    </div>
+    <h1 class="hero-title">
+      Ace Your Next<br/>
+      <span class="gradient-text">Interview</span> with AI
+    </h1>
+    <p class="hero-subtitle">
+      Practice realistic interviews across 5 domains. Get instant feedback, 
+      personalized skill assessments, and expert guidance — all powered by AI.
+    </p>
+    <div class="hero-actions">
+      <button id="btn-start-home" class="btn btn-primary btn-xl" onclick="showScreen('screen-setup')">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        Start Interview
+      </button>
+      <button class="btn btn-ghost btn-xl" onclick="scrollToFeatures()">
+        See Features
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">5</div>
+        <div class="stat-label">Domains</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <div class="stat-num">40+</div>
+        <div class="stat-label">Questions</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <div class="stat-num">AI</div>
+        <div class="stat-label">Real-time Feedback</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="features-section" id="features">
+    <div class="section-header">
+      <h2 class="section-title">Everything You Need to Succeed</h2>
+      <p class="section-subtitle">A complete interview prep platform designed to boost your confidence</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon" style="background: linear-gradient(135deg, #6366f1, #8b5cf6)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        </div>
+        <h3>Real-Time Feedback</h3>
+        <p>Get instant, detailed feedback after every answer — strengths, improvements, and sample hints.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background: linear-gradient(135deg, #06b6d4, #3b82f6)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <h3>Skill Assessment Reports</h3>
+        <p>Receive a comprehensive report with skill scores, readiness verdict, and personalized resources.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background: linear-gradient(135deg, #10b981, #06b6d4)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>5 Interview Domains</h3>
+        <p>Software Engineering, System Design, Data Science, Product Management, and HR/Behavioral.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background: linear-gradient(135deg, #f59e0b, #ef4444)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        </div>
+        <h3>Adaptive Difficulty</h3>
+        <p>Choose your experience level — from Entry Level to Staff/Principal — for tailored questions.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background: linear-gradient(135deg, #8b5cf6, #ec4899)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </div>
+        <h3>Private & Secure</h3>
+        <p>Your sessions are private. No data stored permanently. Practice with full confidence.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="background: linear-gradient(135deg, #ec4899, #f59e0b)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </div>
+        <h3>Detailed Q&A Review</h3>
+        <p>Revisit every question and answer with scores in your final report for targeted improvement.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Domains -->
+  <section class="domains-section">
+    <div class="section-header">
+      <h2 class="section-title">Choose Your Domain</h2>
+    </div>
+    <div class="domains-preview">
+      <div class="domain-pill" style="--c:#6366f1">💻 Software Engineering</div>
+      <div class="domain-pill" style="--c:#8b5cf6">🏗️ System Design</div>
+      <div class="domain-pill" style="--c:#06b6d4">📊 Data Science & ML</div>
+      <div class="domain-pill" style="--c:#10b981">🚀 Product Management</div>
+      <div class="domain-pill" style="--c:#f59e0b">🤝 HR / Behavioral</div>
+    </div>
+    <div class="center-cta">
+      <button class="btn btn-primary btn-lg" onclick="showScreen('screen-setup')">
+        Get Started — It's Free
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </button>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>Built with ❤️ using Google Gemini AI · InterviewAI 2024</p>
+  </footer>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<!-- SCREEN 2: SETUP                                                    -->
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<div id="screen-setup" class="screen">
+  <div class="setup-container">
+    <button class="btn-back" onclick="showScreen('screen-home')">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      Back
+    </button>
+
+    <div class="setup-header">
+      <h2>Configure Your Interview</h2>
+      <p>Set up your practice session in seconds</p>
+    </div>
+
+    <form id="setup-form" class="setup-form" onsubmit="return false;">
+
+      <!-- Job Role -->
+      <div class="form-group">
+        <label class="form-label" for="job-role">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+          Target Job Role
+        </label>
+        <input type="text" id="job-role" class="form-input" placeholder="e.g. Software Engineer, Data Scientist, Product Manager..." value="Software Engineer" maxlength="80" />
+      </div>
+
+      <!-- Domain Selection -->
+      <div class="form-group">
+        <label class="form-label">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          Interview Domain
+        </label>
+        <div class="domain-cards" id="domain-cards">
+          <div class="domain-card selected" data-domain="software_engineering">
+            <div class="domain-card-icon">💻</div>
+            <div class="domain-card-info">
+              <div class="domain-card-name">Software Engineering</div>
+              <div class="domain-card-skills">DS&amp;A · OOP · Patterns</div>
+            </div>
+          </div>
+          <div class="domain-card" data-domain="system_design">
+            <div class="domain-card-icon">🏗️</div>
+            <div class="domain-card-info">
+              <div class="domain-card-name">System Design</div>
+              <div class="domain-card-skills">Scale · APIs · DBs</div>
+            </div>
+          </div>
+          <div class="domain-card" data-domain="data_science">
+            <div class="domain-card-icon">📊</div>
+            <div class="domain-card-info">
+              <div class="domain-card-name">Data Science &amp; ML</div>
+              <div class="domain-card-skills">ML · Stats · Python</div>
+            </div>
+          </div>
+          <div class="domain-card" data-domain="product_management">
+            <div class="domain-card-icon">🚀</div>
+            <div class="domain-card-info">
+              <div class="domain-card-name">Product Management</div>
+              <div class="domain-card-skills">Strategy · Metrics</div>
+            </div>
+          </div>
+          <div class="domain-card" data-domain="behavioral">
+            <div class="domain-card-icon">🤝</div>
+            <div class="domain-card-info">
+              <div class="domain-card-name">HR / Behavioral</div>
+              <div class="domain-card-skills">Leadership · STAR</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Difficulty -->
+      <div class="form-group">
+        <label class="form-label" for="difficulty">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          Difficulty Level
+        </label>
+        <div class="select-wrapper">
+          <select id="difficulty" class="form-select">
+            <option value="Entry Level">Entry Level</option>
+            <option value="Mid Level" selected>Mid Level</option>
+            <option value="Senior Level">Senior Level</option>
+            <option value="Staff/Principal">Staff / Principal</option>
+          </select>
+          <svg class="select-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+      </div>
+
+      <!-- Number of Questions -->
+      <div class="form-group">
+        <label class="form-label">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+          Number of Questions
+        </label>
+        <div class="question-count-selector">
+          <button type="button" class="count-btn" data-count="3">3</button>
+          <button type="button" class="count-btn selected" data-count="5">5</button>
+          <button type="button" class="count-btn" data-count="7">7</button>
+          <button type="button" class="count-btn" data-count="10">10</button>
+        </div>
+      </div>
+
+      <!-- Tips -->
+      <div class="setup-tips">
+        <div class="tip-icon">💡</div>
+        <div>
+          <strong>Tips for best results:</strong> Answer in 3-5 sentences minimum. Use the STAR method for behavioral questions. Be specific with technical answers.
+        </div>
+      </div>
+
+      <button type="button" id="btn-start-interview" class="btn btn-primary btn-full btn-xl" onclick="startInterview()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        Start Interview
+      </button>
+    </form>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<!-- SCREEN 3: INTERVIEW CHAT                                           -->
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<div id="screen-interview" class="screen">
+  <div class="interview-layout">
+
+    <!-- Sidebar -->
+    <aside class="interview-sidebar">
+      <div class="sidebar-brand">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        InterviewAI
+      </div>
+
+      <div class="session-info">
+        <div class="session-badge" id="sidebar-domain">Software Engineering</div>
+        <div class="session-detail">
+          <span class="detail-label">Role</span>
+          <span id="sidebar-role" class="detail-value">Software Engineer</span>
+        </div>
+        <div class="session-detail">
+          <span class="detail-label">Level</span>
+          <span id="sidebar-difficulty" class="detail-value">Mid Level</span>
+        </div>
+      </div>
+
+      <!-- Progress -->
+      <div class="progress-section">
+        <div class="progress-header">
+          <span>Progress</span>
+          <span id="progress-text">0 / 5</span>
+        </div>
+        <div class="progress-track">
+          <div id="progress-fill" class="progress-fill" style="width:0%"></div>
+        </div>
+        <div id="question-dots" class="question-dots"></div>
+      </div>
+
+      <!-- Score Tracker -->
+      <div class="score-tracker">
+        <div class="score-label">Average Score</div>
+        <div class="score-display">
+          <span id="avg-score-display">—</span>
+          <span class="score-max">/10</span>
+        </div>
+      </div>
+
+      <div class="sidebar-actions">
+        <button class="btn btn-ghost-sm" onclick="confirmEndInterview()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+          End Interview
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Chat Area -->
+    <main class="interview-main">
+      <!-- Header -->
+      <header class="interview-header">
+        <div class="question-counter">
+          <span id="header-q-num">Question 1</span>
+          <span id="header-q-total" class="q-total">of 5</span>
+        </div>
+        <div class="interview-timer">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span id="timer-display">00:00</span>
+        </div>
+        <button class="btn btn-outline-sm" onclick="skipQuestion()">
+          Skip
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </header>
+
+      <!-- Chat Messages -->
+      <div id="chat-messages" class="chat-messages">
+        <div class="chat-welcome">
+          <div class="welcome-avatar">🤖</div>
+          <div class="welcome-text">
+            <strong>AI Interviewer is ready!</strong><br/>
+            <span>Answer each question thoughtfully. You can take your time.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Input Area -->
+      <div class="chat-input-area">
+        <div id="feedback-panel" class="feedback-panel hidden"></div>
+        <div class="input-container">
+          <textarea id="answer-input" class="answer-textarea" placeholder="Type your answer here… (Press Ctrl+Enter to submit)" rows="3" maxlength="3000"></textarea>
+          <div class="input-controls">
+            <span id="char-count" class="char-count">0 / 3000</span>
+            <div class="input-actions">
+              <button class="btn btn-outline-sm" id="btn-voice" onclick="toggleVoice()" title="Voice input">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+              </button>
+              <button class="btn btn-primary" id="btn-submit" onclick="submitAnswer()">
+                Submit
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<!-- SCREEN 4: REPORT                                                   -->
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<div id="screen-report" class="screen">
+  <div class="report-container">
+    <div class="report-header">
+      <div class="report-brand">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        InterviewAI
+      </div>
+      <h2 class="report-title">Your Assessment Report</h2>
+      <div id="report-meta" class="report-meta"></div>
+    </div>
+
+    <!-- Overall Score Card -->
+    <div class="score-card">
+      <div class="score-ring-container">
+        <svg class="score-ring" viewBox="0 0 120 120" width="160" height="160">
+          <circle class="ring-track" cx="60" cy="60" r="50"/>
+          <circle id="ring-progress" class="ring-progress" cx="60" cy="60" r="50" stroke-dasharray="314" stroke-dashoffset="314"/>
+        </svg>
+        <div class="score-ring-text">
+          <div id="report-overall-score" class="score-big">—</div>
+          <div class="score-label-sm">/10</div>
+        </div>
+      </div>
+      <div class="score-card-info">
+        <div id="performance-badge" class="performance-badge">—</div>
+        <div id="readiness-verdict" class="readiness-verdict">—</div>
+        <div id="executive-summary" class="executive-summary">—</div>
+      </div>
+    </div>
+
+    <!-- Skill Scores -->
+    <div class="report-section">
+      <h3 class="report-section-title">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        Skill Breakdown
+      </h3>
+      <div id="skill-bars" class="skill-bars"></div>
+    </div>
+
+    <!-- Strengths & Improvements -->
+    <div class="report-two-col">
+      <div class="report-section strengths-section">
+        <h3 class="report-section-title">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          Top Strengths
+        </h3>
+        <ul id="strengths-list" class="report-list strengths-list"></ul>
+      </div>
+      <div class="report-section improvements-section">
+        <h3 class="report-section-title">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          Key Improvements
+        </h3>
+        <ul id="improvements-list" class="report-list improvements-list"></ul>
+      </div>
+    </div>
+
+    <!-- Resources -->
+    <div class="report-section">
+      <h3 class="report-section-title">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        Recommended Resources
+      </h3>
+      <div id="resources-list" class="resources-grid"></div>
+    </div>
+
+    <!-- Next Steps -->
+    <div class="report-section">
+      <h3 class="report-section-title">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        Next Steps
+      </h3>
+      <div id="next-steps-list" class="next-steps"></div>
+    </div>
+
+    <!-- Q&A Review -->
+    <div class="report-section">
+      <h3 class="report-section-title">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        Question-by-Question Review
+      </h3>
+      <div id="qa-review" class="qa-review"></div>
+    </div>
+
+    <!-- CTA -->
+    <div class="report-cta">
+      <button class="btn btn-primary btn-lg" onclick="startFresh()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.76"/></svg>
+        Practice Again
+      </button>
+      <button class="btn btn-outline btn-lg" onclick="printReport()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+        Save / Print Report
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<!-- MODALS                                                             -->
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+
+<!-- Loading Overlay -->
+<div id="loading-overlay" class="loading-overlay hidden">
+  <div class="loader-card">
+    <div class="spinner"></div>
+    <p id="loading-text">Generating your question…</p>
+  </div>
+</div>
+
+<!-- Confirm End Modal -->
+<div id="modal-end" class="modal-backdrop hidden">
+  <div class="modal-card">
+    <div class="modal-icon warning">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    </div>
+    <h3>End Interview?</h3>
+    <p>You'll still receive a report based on answers submitted so far.</p>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeModal('modal-end')">Continue Interview</button>
+      <button class="btn btn-danger" onclick="endInterviewNow()">End & Get Report</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast Notifications -->
+<div id="toast-container" class="toast-container"></div>
+
+<script src="/static/js/app.js"></script>
+</body>
+</html>
