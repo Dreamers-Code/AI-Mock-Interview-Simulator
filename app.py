@@ -304,8 +304,21 @@ def parse_json_response(text):
 def index():
     return app.send_static_file("index.html")
 
+@app.errorhandler(404)
+def handle_not_found(e):
+    return jsonify({
+        "error": "Not Found",
+        "path": request.path,
+        "url": request.url,
+        "environ_path": request.environ.get("PATH_INFO"),
+        "query": request.query_string.decode("utf-8", "ignore"),
+    }), 404
+
 
 @app.route("/api/status", methods=["GET"])
+@app.route("/status", methods=["GET"])
+@app.route("/api", methods=["GET"])
+@app.route("/api/index", methods=["GET"])
 def api_status():
     return jsonify({
         "status": "online",
@@ -316,11 +329,13 @@ def api_status():
 
 
 @app.route("/api/domains", methods=["GET"])
+@app.route("/domains", methods=["GET"])
 def get_domains():
     return jsonify({"domains": DOMAINS})
 
 
 @app.route("/api/session/start", methods=["POST"])
+@app.route("/session/start", methods=["POST"])
 def start_session():
     data = request.get_json()
     if not data:
@@ -364,6 +379,7 @@ def start_session():
 
 
 @app.route("/api/session/<session_id>/answer", methods=["POST"])
+@app.route("/session/<session_id>/answer", methods=["POST"])
 def submit_answer(session_id):
     sess = _get_session(session_id)
     if not sess:
@@ -420,6 +436,7 @@ def submit_answer(session_id):
 
 
 @app.route("/api/session/<session_id>/report", methods=["GET"])
+@app.route("/session/<session_id>/report", methods=["GET"])
 def get_report(session_id):
     sess = _get_session(session_id)
     if not sess:
@@ -446,6 +463,7 @@ def get_report(session_id):
 
 
 @app.route("/api/session/<session_id>/skip", methods=["POST"])
+@app.route("/session/<session_id>/skip", methods=["POST"])
 def skip_question(session_id):
     sess = _get_session(session_id)
     if not sess:
